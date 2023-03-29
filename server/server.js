@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+// app.use(express.static("public")); // set up our Express server to serve static files
+
 const stockTotalsRoute = require("./routes/stockTotalsRoute");
 
 app.use((req, res, next) => {
