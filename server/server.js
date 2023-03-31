@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+var cors = require("cors");
+app.use(cors());
+
 // app.use(express.static("public")); // set up our Express server to serve static files
 
 const stockTotalsRoute = require("./routes/stockTotalsRoute");
@@ -15,11 +18,16 @@ app.use((req, res, next) => {
 app.use("/stocktotals", stockTotalsRoute); // Use app.use() to mount your stock totals router on to the path / foods
 
 app.get("/", function (req, res) {
-  console.log(req.query);
-  console.log(req.params);
+  // console.log(req.query);
+  // console.log(req.params);
   res.send("Welcome to  home");
 });
 
+app.post("/upload", function (req, res) {
+  console.log(req);
+  console.log(res);
+});
+
 app.listen(8080, function () {
-  console.log("hello world");
+  console.log("Running on port 8080");
 });
