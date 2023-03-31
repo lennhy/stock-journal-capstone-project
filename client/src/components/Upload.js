@@ -4,13 +4,19 @@ import { useState } from "react";
 
 const Upload = () => {
   const [file, setUploadFile] = useState(null);
-  const submithandler = (e) => {
+
+  const selectedFile = (e) => {
     e.preventDefault();
     console.log(e);
-    setUploadFile(e.target[0].value);
+    console.log(e.target.files[0]);
+    setUploadFile(e.target.files[0]);
   };
 
+  const submitHandler = (e) => {};
+
   useEffect(() => {
+    console.log(file);
+
     axios
       .post("http://localhost:8080/upload", {
         headers: {
@@ -27,13 +33,14 @@ const Upload = () => {
   return (
     <>
       <form
-        onSubmit={(e) => submithandler(e)}
+        onChange={(e) => selectedFile(e)}
         action="/upload"
         method="post"
         encType="multipart/form-data"
       >
         <input type="file" id="file" name="filetoupload" />
-        <input type="submit" />
+        {/* <input type="submit" /> */}
+        <button onClick={() => submitHandler()}>Upload</button>
       </form>
     </>
   );
