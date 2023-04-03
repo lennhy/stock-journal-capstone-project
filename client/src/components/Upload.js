@@ -11,17 +11,9 @@ const Upload = () => {
   };
 
   const submitHandler = (e) => {
-    // e.preventDefault();
-    // console.log(document.querySelector("#fileInput"));
-    // const { data } = axios.post("http://localhost:8080/upload", fileUpload, {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // });
+    // Prevent the form from reloading the page after submit
     e.preventDefault();
-    console.log(fileUpload);
-    console.log("inside Upload route -------");
-
+    // For Node / Express to accept the fields from your upload form the values must be appended in a FormData object
     const formData = new FormData();
     formData.append("filetoupload", fileUpload);
     const config = {
@@ -29,16 +21,7 @@ const Upload = () => {
         "content-type": "multipart/form-data",
       },
     };
-
-    // formData.append("lastModified", fileUpload.lastModified);
-    // formData.append("lastModifiedDate", fileUpload.lastModifiedDate);
-    // formData.append("name", fileUpload.name);
-    // formData.append("size", fileUpload.size);
-    // formData.append("type", fileUpload.type);
-    // formData.append("webkitRelativePath", fileUpload.webkitRelativePath);
-
-    // console.log(formData);
-
+    // Include the formdata and config in the post request
     axios
       .post("http://localhost:8080/upload", formData, config)
       .then((response) => {
@@ -53,17 +36,11 @@ const Upload = () => {
     <>
       <form
         action="/upload"
-        method="post"
         id="file_input"
         onChange={(e) => selectedFile(e)}
         encType="multipart/form-data"
       >
         <input type="file" className="form-control-file" name="filetoupload" />
-        {/* <input
-          type="submit"
-          value="Get me the stocks!"
-          className="btn btn-default"
-        /> */}
         <button onClick={(e) => submitHandler(e)}>Submit</button>
       </form>
     </>
