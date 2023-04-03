@@ -1,11 +1,13 @@
 const express = require("express");
-const app = express();
 var cors = require("cors");
+const app = express();
 app.use(cors());
-const formidable = require("formidable");
-console.log("here---------formidable");
-// console.log(formidable);
+
 // app.use(express.static("public")); // set up our Express server to serve static files
+
+const multer = require("multer");
+// const upload = multer({ dest: "/Users/lennhypolite/local-cdn" });
+const upload = multer({ dest: "./public/data/uploads/" });
 
 const stockTotalsRoute = require("./routes/stockTotalsRoute");
 
@@ -25,9 +27,16 @@ app.get("/", function (req, res) {
   res.send("Welcome to  home");
 });
 
-app.post("/upload", function (req, res) {
-  console.log("upload server rotue running");
-  console.log(req);
+app.post("/upload", upload.single("filetoupload"), function (req, res) {
+  // console.log("upload server rotue running-----");
+  // console.log(req.files);
+  // // console.log(req.body);
+  // // console.log(res.json(req.body));
+  // // console.log(req.body);
+  // // console.log(req.get("Content-Type"));
+  // console.log(req.file);
+  console.log("run post upload ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+  console.log(req.file, req.body);
 });
 
 app.listen(8080, function () {
