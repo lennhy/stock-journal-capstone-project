@@ -5,8 +5,7 @@ import { useState } from "react";
 const Upload = () => {
   const [fileUpload, setUploadFile] = useState(null);
   const selectedFile = (e) => {
-    // e.preventDefault();
-    console.log(e);
+    console.log(e.target.file);
     console.log(e.target.files[0]);
     setUploadFile(e.target.files[0]);
   };
@@ -24,14 +23,24 @@ const Upload = () => {
     console.log("inside Upload route -------");
 
     const formData = new FormData();
-    formData.append("name", fileUpload.name);
-    formData.append("lastModified", fileUpload.lastModified);
-    formData.append("size", fileUpload.size);
-    formData.append("type", fileUpload.type);
+    formData.append("filetoupload", fileUpload);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
 
-    console.log(formData);
+    // formData.append("lastModified", fileUpload.lastModified);
+    // formData.append("lastModifiedDate", fileUpload.lastModifiedDate);
+    // formData.append("name", fileUpload.name);
+    // formData.append("size", fileUpload.size);
+    // formData.append("type", fileUpload.type);
+    // formData.append("webkitRelativePath", fileUpload.webkitRelativePath);
+
+    // console.log(formData);
+
     axios
-      .post("http://localhost:8080/upload", formData)
+      .post("http://localhost:8080/upload", formData, config)
       .then((response) => {
         console.log(response);
       })
