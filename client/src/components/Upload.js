@@ -5,7 +5,6 @@ import { useState } from "react";
 const Upload = () => {
   const [fileUpload, setUploadFile] = useState(null);
   const selectedFile = (e) => {
-    console.log(e.target.file);
     console.log(e.target.files[0]);
     setUploadFile(e.target.files[0]);
   };
