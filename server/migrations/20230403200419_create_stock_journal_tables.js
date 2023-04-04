@@ -3,10 +3,11 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable("stock_transaction_files", function () {
+  return knex.schema.createTable("stock_transaction_files", function (table) {
     table.increments("id").primary();
     table.string("file_path").notNullable();
-    table.timestamps().notNullable();
+    table.timestamp("last_modified_date").notNullable();
+    table.timestamps();
   });
 };
 

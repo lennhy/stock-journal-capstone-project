@@ -1,12 +1,11 @@
 require("dotenv").config();
-
-const knex = require("knex")({
+module.exports = {
   client: "mysql",
   connection: {
-    host: "127.0.0.1",
-    port: 3306,
-    user: process.env.USER,
+    host: "localhost",
+    user: process.env.STOCK_JOURNAL_USER,
     password: process.env.STOCK_JOURNAL_PASSWORD,
     database: process.env.STOCK_JOURNAL_DB,
+    charset: "utf8",
   },
-});
+};
