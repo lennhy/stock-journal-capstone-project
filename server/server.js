@@ -34,8 +34,13 @@ app.use((req, res, next) => {
 app.use("/stocktotals", stockTotalsRoute); // Use app.use() to mount your stock totals router on to the path / foods
 
 app.get("/", function (req, res) {
+  // Select the latest file upload
   knex
+    // Get the latest addition to the table
+    // MYSQL: select file_path, file_name from stock_transaction_files where (created_at) in (select max(created_at) from stock_transaction_files);    .select("file_path", "file_name")
     .select("file_path", "file_name")
+    .orderBy("created_at", "desc")
+    .limit("1")
     .from("stock_transaction_files")
     .then((csvFilePath) => {
       // Construct the complete path to the file
