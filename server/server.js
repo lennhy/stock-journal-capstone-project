@@ -4,7 +4,6 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 const knex = require("knex")(require("./knexfile"));
-// app.use(express.static("public")); // set up our Express server to serve static files
 const multer = require("multer");
 const csv = require("csvtojson");
 
@@ -45,8 +44,8 @@ app.get("/", function (req, res) {
       csv()
         .fromFile(path)
         .then((jsonObj) => {
-          // Return the response of the string
-          res.json(jsonObj);
+          // Return the response as a json object
+          res.send(jsonObj);
         });
     })
     .catch((err) => {
@@ -55,8 +54,7 @@ app.get("/", function (req, res) {
 });
 
 app.post("/upload", upload.single("filetoupload"), function (req, res) {
-  console.log("run post upload ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-  console.log(req.file, req.body);
+  // Add New file path and info to the database
   knex("stock_transaction_files")
     .insert({
       file_name: req.file.originalname,
