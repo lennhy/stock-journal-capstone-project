@@ -1,11 +1,9 @@
 require("dotenv").config();
-console.log(process.env);
 const express = require("express");
-var cors = require("cors");
 const app = express();
+const cors = require("cors");
 app.use(cors());
-const path = require("path");
-
+const knex = require("knex")(require("./knexfile"));
 // app.use(express.static("public")); // set up our Express server to serve static files
 
 const multer = require("multer");
@@ -25,6 +23,8 @@ var upload = multer({ storage: storage });
 const stockTotalsRoute = require("./routes/stockTotalsRoute");
 
 app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+
   if (req.method === "GET") {
     console.log("get stock totals");
   }
@@ -42,8 +42,18 @@ app.get("/", function (req, res) {
 
 app.post("/upload", upload.single("filetoupload"), function (req, res) {
   console.log("run post upload ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-  // req.file.originalname;
   console.log(req.file, req.body);
+  knex("stock_transaction_files")
+    .insert({
+      file_name: req.file.originalname,
+      file_path: req.file.destination,
+    })
+    .then((suc) => {
+      console.log(suc);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.listen(8080, function () {

@@ -11,6 +11,11 @@ exports.up = function (knex) {
   });
 };
 
+exports.down = function (knex) {
+  return knex.schema.table("stock_transaction_files", function (table) {
+    table.dropTable("stock_transaction_files");
+  });
+};
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
