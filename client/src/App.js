@@ -14,7 +14,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/upload" element={<Upload />}></Route>
-          <Route path="/calendar/:year" elemen={<Calendar />}></Route>
+          <Route path="/calendar" element={<Calendar />}></Route>
+          {/* <Route path="/calendar/:year" elemen={<Calendar />}></Route> */}
           <Route path="/chart" element={<Chart />}></Route>
         </Routes>
       </BrowserRouter>

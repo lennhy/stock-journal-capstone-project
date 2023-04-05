@@ -4,6 +4,11 @@
 
 ## Track Monthly P/L
 
+## How the figures are calculated
+
+Group the objects with the same date
+Compare the values with the same ticker symbol
+
 ## Instructions:
 
 # Getting Started with Create React App
