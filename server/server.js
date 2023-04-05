@@ -37,7 +37,12 @@ app.use("/stocktotals", stockTotalsRoute); // Use app.use() to mount your stock 
 app.get("/", function (req, res) {
   // console.log(req.query);
   // console.log(req.params);
-  res.send("Welcome to  home");
+  console.log(res);
+  knex
+    .select("file_path")
+    .from("stock_transaction_files")
+    .then((data) => console.log(res.json(data)));
+  // res.send("Welcome to  home");
 });
 
 app.post("/upload", upload.single("filetoupload"), function (req, res) {
