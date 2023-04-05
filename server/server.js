@@ -5,19 +5,19 @@ const cors = require("cors");
 app.use(cors());
 const knex = require("knex")(require("./knexfile"));
 // app.use(express.static("public")); // set up our Express server to serve static files
-
 const multer = require("multer");
-// const upload = multer({ dest: "/Users/lennhypolite/local-cdn" });
-// const upload = multer({ dest: "./public/data/uploads/" });
+const csv = require("csvtojson");
 
+// Customize multer storage
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/data/uploads/");
+    cb(null, "./public/data/uploads/");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
   },
 });
+
 var upload = multer({ storage: storage });
 
 const stockTotalsRoute = require("./routes/stockTotalsRoute");
@@ -35,14 +35,23 @@ app.use((req, res, next) => {
 app.use("/stocktotals", stockTotalsRoute); // Use app.use() to mount your stock totals router on to the path / foods
 
 app.get("/", function (req, res) {
-  // console.log(req.query);
-  // console.log(req.params);
-  console.log(res);
   knex
-    .select("file_path")
+    .select("file_path", "file_name")
     .from("stock_transaction_files")
-    .then((data) => console.log(res.json(data)));
-  // res.send("Welcome to  home");
+    .then((csvFilePath) => {
+      // Construct the complete path to the file
+      const path = csvFilePath[0].file_path + csvFilePath[0].file_name;
+      console.log(path);
+      csv()
+        .fromFile(path)
+        .then((jsonObj) => {
+          // Return the response of the string
+          res.json(jsonObj);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.post("/upload", upload.single("filetoupload"), function (req, res) {
@@ -53,8 +62,8 @@ app.post("/upload", upload.single("filetoupload"), function (req, res) {
       file_name: req.file.originalname,
       file_path: req.file.destination,
     })
-    .then((suc) => {
-      console.log(suc);
+    .then((result) => {
+      console.log(result);
     })
     .catch((err) => {
       console.log(err);
