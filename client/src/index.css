@@ -1,3 +1,8 @@
+/* Applying border-box to all elelents  */
+*, *::before, *::after{
+    /* the width and height does not change when the content changes */
+    box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

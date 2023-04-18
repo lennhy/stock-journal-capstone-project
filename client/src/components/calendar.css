@@ -1,0 +1,10 @@
+/* A block - a standalone entity  */
+.calendar {
+  display: flex;
+  flex-direction: row;
+}
+
+/* a child element like */
+/* a variation of the block - displays stock info */
+/* block modifier - a variation of the block - displays - chart visualizations */
+/* a child element that has a modifier *//*# sourceMappingURL=calendar.css.map */
