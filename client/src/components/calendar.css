@@ -1,7 +1,7 @@
 /* A block - a standalone entity  */
 .calendar {
   display: flex;
-  flex-direction: row;
+  margin: 10px auto;
 }
 
 /* a child element like */

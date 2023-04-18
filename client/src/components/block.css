@@ -1,4 +1,14 @@
-.block {
+.block, .block__child {
+  height: 300px;
+  width: 300px;
+  margin: 2px;
+}
+
+.block__child {
+  font-size: 1.25rem;
+}
+
+.block__child {
   height: 300px;
   width: 300px;
   margin: 2px;
