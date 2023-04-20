@@ -1,0 +1,19 @@
+.block {
+  height: 300px;
+  width: 300px;
+  margin: 2px;
+}
+
+// SCSS nesting
+.block {
+  // Replace the block name with '&'
+  &__child {
+    font-size: 1.25rem;
+  }
+}
+.block__child {
+  @extend .block; // SCSS Copy the parent elements properties
+  height: 300px;
+  width: 300px;
+  margin: 2px;
+}

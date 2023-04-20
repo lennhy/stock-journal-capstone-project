@@ -1,0 +1,15 @@
+@use "./partials/global" as *;
+/* Applying border-box to all elelents  */
+*,
+*::before,
+*::after {
+  /* the width and height does not change when the content changes */
+  box-sizing: border-box;
+}
+html {
+  font-size: 100%;
+}
+body {
+  background-color: $dark-mode;
+  margin: 0;
+}

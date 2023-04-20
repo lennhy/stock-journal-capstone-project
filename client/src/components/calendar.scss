@@ -1,0 +1,25 @@
+// SCSS mixin to share ruleset anywhere
+@mixin flexbox-center($margin-top-bottom) {
+  display: flex;
+  margin: $margin-top-bottom auto; // center the flexbox content
+}
+
+/* A block - a standalone entity  */
+.calendar {
+  @include flexbox-center(10px);
+}
+
+/* a child element like */
+.calendar__title {
+}
+
+/* a variation of the block - displays stock info */
+.calendar--stock {
+}
+/* block modifier - a variation of the block - displays - chart visualizations */
+.calendar--chart {
+}
+
+/* a child element that has a modifier */
+.calendar__title {
+}
