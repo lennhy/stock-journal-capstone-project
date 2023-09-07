@@ -35,6 +35,7 @@ app.use("/stocktotals", stockTotalsRoute); // Use app.use() to mount your stock 
 
 app.get("/", function (req, res) {
   // Select the latest file upload
+  console.log("Running home page.")
   knex
     // Get the latest addition to the table
     // MYSQL: select file_path, file_name from stock_transaction_files where (created_at) in (select max(created_at) from stock_transaction_files);    .select("file_path", "file_name")
