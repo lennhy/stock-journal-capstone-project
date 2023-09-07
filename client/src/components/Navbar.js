@@ -1,7 +1,10 @@
+import React from "react";
+
 import { NavLink } from "react-router-dom"; // import Link in addition to other Components
 // import logo from "../logo.svg";
 
-const Navbar = () => {
+export default function Navbar() {
+
   return (
     <>
       <nav className="">
@@ -15,4 +18,3 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;

@@ -1,3 +1,3 @@
-const Chart = () => {};
+export default function Chart(){
 
-export default Chart;
+}

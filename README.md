@@ -9,7 +9,26 @@
 Group the objects with the same date
 Compare the values with the same ticker symbol
 
-## Instructions:
+# Instructions:
+
+## npm
+In terminal Go to client folder type npm install 
+
+## nodemon
+in terminal Go to server folder type npm install nodemon
+
+## dotenv
+then npm install dotenv --save
+
+## Install mysql:
+Follow the instructions via the link below:
+https://www.geeksforgeeks.org/how-to-install-mysql-on-macos/
+to start database type below:
+mysql -u root -p
+
+## install knex
+https://knexjs.org/guide/#node-js
+npm install knex --save
 
 # Getting Started with Create React App
 

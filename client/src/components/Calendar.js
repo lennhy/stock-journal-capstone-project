@@ -1,8 +1,11 @@
+import React from "react";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Block from "./Block";
 
-const Calendar = () => {
+export default function Calendar() {
+
   // It will be a lot more dificult to calculate swing trades -
 
   // For now only track day trades Or you will have to also keep track of the
@@ -85,4 +88,3 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;

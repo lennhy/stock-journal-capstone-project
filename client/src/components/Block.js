@@ -1,6 +1,7 @@
 import "./block.css";
+import React from "react";
 
-const Block = ({stock}) => {
+export default function Block(){
     // console.log("hello")
     // // console.log(stock)
     // let tickers=[]
@@ -26,4 +27,3 @@ const Block = ({stock}) => {
     );
 };
 
-export default Block;
